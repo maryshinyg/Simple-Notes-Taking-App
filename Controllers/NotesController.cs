@@ -28,6 +28,7 @@ namespace NotesApp.Controllers
         // GET: Notes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            ViewData["HideFooter"] = "true";
             if (id == null)
             {
                 return NotFound();
@@ -46,6 +47,7 @@ namespace NotesApp.Controllers
         // GET: Notes/Create
         public IActionResult Create()
         {
+            ViewData["HideFooter"] = "true";
             return View();
         }
 
@@ -68,6 +70,7 @@ namespace NotesApp.Controllers
         // GET: Notes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            ViewData["HideFooter"] = "true";
             if (id == null)
             {
                 return NotFound();
@@ -113,24 +116,6 @@ namespace NotesApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(note);
-        }
-
-        // GET: Notes/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var note = await _context.Notes
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (note == null)
-            {
-                return NotFound();
-            }
-
             return View(note);
         }
 

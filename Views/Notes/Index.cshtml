@@ -4,26 +4,43 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Hey there! Having a good day?</h1>
+<!-- Header Section -->
+<div class="text-center mt-5 mb-4">
+    <h1 class="display-4 text-primary">Hey there! Having a good day?</h1>
+</div>
 
-<div class="container mt-4">
-    <div class="d-flex justify-content-between align-items-center mb-3">
+<!-- Main Container -->
+<div class="container">
+    <!-- Notes Section Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="text-primary">📒 My Notes</h2>
         <a class="btn btn-success rounded-pill px-4" asp-action="Create">➕ New Note</a>
     </div>
 
+    <!-- Notes List -->
     <div class="row">
         @foreach (var note in Model)
         {
             <div class="col-md-4 mb-4">
-                <div class="card shadow-sm border-0">
+                <div class="card shadow-lg border-0 rounded-lg">
                     <div class="card-body">
-                        <h5 class="card-title text-dark">@note.Title</h5>
-                        <p class="card-text text-muted text-truncate">@note.Content</p>
+                        <!-- Title -->
+                        <h5 class="card-title text-dark font-weight-bold">@note.Title</h5>
+                        <!-- Content with text-truncate to limit text length -->
+                        <p class="card-text text-muted text-truncate" style="max-height: 80px;">@note.Content</p>
+                        <!-- Footer with action buttons -->
                         <div class="d-flex justify-content-between mt-3">
-                            <a asp-action="Details" asp-route-id="@note.Id" class="btn btn-info btn-sm">👀 View</a>
-                            <a asp-action="Edit" asp-route-id="@note.Id" class="btn btn-warning btn-sm">✏️ Edit</a>
-                            <a asp-action="Delete" asp-route-id="@note.Id" class="btn btn-danger btn-sm">🗑 Delete</a>
+                            <a asp-action="Details" asp-route-id="@note.Id" class="btn btn-info btn-sm rounded-pill">👀 View</a>
+                            <a asp-action="Edit" asp-route-id="@note.Id" class="btn btn-warning btn-sm rounded-pill">✏️ Edit</a>
+
+                            <!-- Delete Button with Confirmation -->
+                            <a href="#" class="btn btn-danger btn-sm rounded-pill"
+                               onclick="return confirmDelete(@note.Id);">🗑 Delete</a>
+
+                            <!-- Hidden Form for Delete -->
+                            <form id="delete-form-@note.Id" asp-action="Delete" asp-route-id="@note.Id" method="post" style="display:none;">
+                                @Html.AntiForgeryToken()
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -32,4 +49,20 @@
     </div>
 </div>
 
+@section Scripts {
+    <script>
+        function confirmDelete(noteId) {
+            if (confirm('Are you sure you want to delete this note?')) {
+                // Submit the form when the user confirms
+                document.getElementById('delete-form-' + noteId).submit();
+            }
+            return false; // Prevent default link behavior
+        }
+    </script>
+}
 
+
+@* <!-- Optional Footer Section -->
+<div class="text-center mt-4">
+    <small class="text-muted">© 2025 NotesApp - All rights reserved</small>
+</div> *@
