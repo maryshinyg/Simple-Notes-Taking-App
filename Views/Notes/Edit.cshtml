@@ -1,48 +1,50 @@
 ﻿@model NotesApp.Models.Note
 
-@{
-    ViewData["Title"] = "Edit";
-}
 
-<!-- Page Title -->
-<h1 class="text-center mb-4">Edit Your Note</h1>
+<div class="text-center mt-4 mb-3">
+    <h1 class="display-4 text-secondary">Edit Your Notes</h1>
+</div>
 
 <!-- Main Container -->
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-9">
+            <div class="card shadow-lg border-0 rounded-lg">
+                <div class="card-body">
             <!-- Make the form occupy more space on larger screens -->
-            <form asp-action="Edit">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <input type="hidden" asp-for="Id" />
+                    <form asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Id" />
 
-                <!-- Title Input -->
-                <div class="form-group">
-                    <label asp-for="Title" class="control-label"></label>
-                    <input asp-for="Title" class="form-control" />
-                    <span asp-validation-for="Title" class="text-danger"></span>
-                </div>
+                        <!-- Title Input -->
+                    <div class="form-group">
+                        <label asp-for="Title" class="control-label"></label>
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
 
-                <!-- Content Input -->
-                <div class="form-group">
-                    <label asp-for="Content" class="control-label"></label>
-                    <textarea asp-for="Content" class="form-control" rows="14"></textarea> <!-- Adjusted rows for better visibility -->
-                    <span asp-validation-for="Content" class="text-danger"></span>
-                </div>
+                    <!-- Content Input -->
+                    <div class="form-group">
+                        <label asp-for="Content" class="control-label"></label>
+                        <textarea asp-for="Content" class="form-control" rows="14"></textarea> <!-- Adjusted rows for better visibility -->
+                        <span asp-validation-for="Content" class="text-danger"></span>
+                    </div>
 
-                <!-- CreatedAt Input -->
-                <div class="form-group">
-                    <label asp-for="CreatedAt" class="control-label"></label>
-                    <input asp-for="CreatedAt" class="form-control" />
-                    <span asp-validation-for="CreatedAt" class="text-danger"></span>
-                </div>
+                    <!-- CreatedAt Input -->
+                    <div class="form-group">
+                        <label asp-for="CreatedAt" class="control-label"></label>
+                        <input asp-for="CreatedAt" class="form-control" />
+                        <span asp-validation-for="CreatedAt" class="text-danger"></span>
+                    </div>
 
-                <!-- Save Button -->
-                <div class="form-group d-flex justify-content-between mt-3">
-                    <a asp-action="Index" class="btn btn-secondary">🔙 Back to all Notes</a>
-                    <button type="submit" class="btn btn-success">✅ Save Note</button>                  
+                    <!-- Save Button -->
+                    <div class="form-group d-flex justify-content-between mt-3">
+                        <a asp-action="Index" class="btn btn-secondary">🔙 Back to all Notes</a>
+                        <button type="submit" class="btn btn-success">✅ Save Note</button>                  
+                    </div>
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>

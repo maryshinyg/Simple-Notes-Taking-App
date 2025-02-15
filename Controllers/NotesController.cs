@@ -22,7 +22,7 @@ namespace NotesApp.Controllers
         // GET: Notes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Notes.ToListAsync());
+            return View(await _context.Notes.Take(10).ToListAsync());
         }
 
         // GET: Notes/Details/5
@@ -79,6 +79,7 @@ namespace NotesApp.Controllers
             var note = await _context.Notes.FindAsync(id);
             if (note == null)
             {
+                Console.WriteLine($"Note with id {id} not found.");
                 return NotFound();
             }
             return View(note);
@@ -131,7 +132,8 @@ namespace NotesApp.Controllers
             }
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            //return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Notes");
         }
 
         private bool NoteExists(int id)

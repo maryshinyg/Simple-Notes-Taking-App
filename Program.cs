@@ -7,8 +7,16 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 //configure EF core
-builder.Services.AddDbContext<AppDbContext>(options =>
+/*builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+*/
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), sqlOptions =>
+    {
+        sqlOptions.CommandTimeout(180);  // Set command timeout to 180 seconds
+    });
+});
 
 var app = builder.Build();
 
