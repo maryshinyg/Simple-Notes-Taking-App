@@ -17,3 +17,5 @@ A simple web application built with ASP.NET to perform CRUD (Create, Read, Updat
 - Controllers: Contains the logic for handling HTTP requests related to note operations (Create, Read, Update, Delete).
 - Models: Defines the structure of the Note object.
 - Views: Displays the user interface to interact with the app.
+
+![HomePage]([http://url/to/img.png](https://drive.google.com/file/d/1038XWKvrKR2B8qnJ92PRIBJA6Q1RsKjY/view?usp=drive_link))
